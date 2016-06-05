@@ -217,7 +217,7 @@ flush(Mach *m)
 	pix = frame;
 	for (y = 0; y < m->dy; y++) {
 		for (x = 0; x < m->dx; x++) {
-			pix[x] = m->cmap[mach.pix[y][x]];
+			pix[x] = m->cmap[m->pix[y][x]];
 			m->pix[y][x] >>= 1;
 		}
 		pix += pitch / 4;
