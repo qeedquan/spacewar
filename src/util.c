@@ -200,6 +200,12 @@ loadconfig(Controller *ctl, Config *conf, const char *name)
 		if (!strcasecmp(key, "fps")) {
 			conf->fps = atof(value);
 			continue;
+		} else if (!strcasecmp(key, "white")) {
+			conf->white = atoi(value);
+			continue;
+		} else if (!strcasecmp(key, "axis_threshold")) {
+			ctl->axis_threshold = atof(value);
+			continue;
 		}
 
 		for (i = 0; i < nelem(dc); i++) {

@@ -60,6 +60,7 @@ parseargs(int argc, char *argv[])
 
 	setrootdir(dir);
 	loadconfig(&ctl, &conf, "config");
+	saveconfig(&ctl, &conf, "config");
 }
 
 static void
