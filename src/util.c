@@ -183,7 +183,7 @@ loadconfig(Controller *ctl, Config *conf, const char *name)
 			ctl->axis[i] = SDL_GameControllerGetAxisFromString(dc[i].pad);
 	}
 	ctl->axis_threshold = 10000;
-	conf->fps           = 35;
+	conf->fps           = 60;
 	conf->white         = 0;
 	conf->frameskip     = 1;
 

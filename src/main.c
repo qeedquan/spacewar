@@ -255,7 +255,7 @@ emulate(Mach *m)
 			}
 		}
 
-		if (SDL_GetTicks() - t > 1000.0 / speed && frame >= maxframe) {
+		if (SDL_GetTicks() - t > 1000.0 / speed && (frame >= maxframe || m->halt)) {
 			break;
 		}
 	}
