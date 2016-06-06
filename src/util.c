@@ -229,6 +229,9 @@ loadconfig(Controller *ctl, Config *conf, const char *name)
 		}
 	}
 
+	if (conf->fps < 1)
+		conf->fps = 60;
+
 	fclose(fp);
 	return 0;
 }
