@@ -3,8 +3,8 @@
 #include "dat.h"
 #include "fns.h"
 
-static Word mask = 0777777;
-static Word sign = 0400000;
+static const Word mask = 0777777;
+static const Word sign = 0400000;
 
 extern const char *spacewar_rom[];
 
@@ -453,8 +453,8 @@ exec(Mach *m, Word inst)
 }
 
 static struct {
-	char *str;
-	u32   mode;
+	const char *str;
+	u32         mode;
 } optab[] = {
         [AND]    = {"and", AREG},
         [IOR]    = {"ior", AREG},
