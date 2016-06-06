@@ -103,8 +103,9 @@ loadrom(Mach *m)
 	Word        a, v;
 
 	memset(m->mem, 0, sizeof(m->mem));
-	for (n            = 0; n < nelem(m->sym); n++)
+	for (n = 0; n < nelem(m->sym); n++) {
 		m->sym[n] = 0xffffffff;
+	}
 
 	for (n = 0; (line = spacewar_rom[n]); n++) {
 		if (line[0] != ' ' && line[0] != '+')
@@ -178,7 +179,7 @@ memwrite(Mach *m, Word a, Word v)
 	m->mem[a & 07777] = v;
 }
 
-int
+void
 step(Mach *m)
 {
 	Word inst;
@@ -186,14 +187,15 @@ step(Mach *m)
 
 	disasm(&ip, m, m->pc);
 	if (m->halt)
-		return 0;
+		return;
 
 	if (ip.mode & AMEM)
 		m->sym[ip.addr] = 0xffffffff;
 
 	/* printf("%04x %s", m->pc, ip.str); */
 	inst = memread(m, m->pc++);
-	return exec(m, inst);
+	if (exec(m, inst))
+		m->halt |= 0x1;
 }
 
 static Word
@@ -432,7 +434,6 @@ exec(Mach *m, Word inst)
 			m->ac ^= mask;
 		if ((y & 0400) == 0400) {
 			m->pc--;
-			m->halt |= 0x1;
 			return -EHLT;
 		}
 		i = y & 7;

@@ -6,7 +6,7 @@ void savestate(Mach *, void *);
 void loadstate(Mach *, void *);
 void initmach(Mach *, SDL_Renderer *, Config *);
 void reset(Mach *);
-int  step(Mach *);
+void step(Mach *);
 int  exec(Mach *, Word);
 Word memread(Mach *, Word);
 void memwrite(Mach *, Word, Word);
