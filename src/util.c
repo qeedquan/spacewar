@@ -51,11 +51,14 @@ getm(u8 *dst, u8 *src, size_t n)
 void
 fatal(const char *fmt, ...)
 {
+	char    msg[1024];
 	va_list ap;
+
 	va_start(ap, fmt);
-	vfprintf(stderr, fmt, ap);
+	vsnprintf(msg, sizeof(msg), fmt, ap);
 	va_end(ap);
-	fprintf(stderr, "\n");
+	fprintf(stderr, "%s\n", msg);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", msg, NULL);
 	exit(1);
 }
 
