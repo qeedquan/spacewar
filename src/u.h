@@ -1,5 +1,7 @@
 #include <SDL.h>
 
+typedef unsigned int uint;
+
 typedef Uint8  u8;
 typedef Uint16 u16;
 typedef Uint32 u32;
